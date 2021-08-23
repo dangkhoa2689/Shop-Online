@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html layout:decorator="admin/template">
+<head>
+<meta charset="UTF-8" />
+<title>Danh Sach Product</title>
+
+</head>
+<body layout:fragment="content" th:remove="tag">
+	<div>
+		<form th:action="@{/admin/product/search}" method="get">
+
+			<p>DANH SACH THONG TIN PRODUCT</p>
+
+			<div>
+				<form>
+					<input type="text" name="keyword" th:value="${keyword}"
+						placeholder="Press name of product you need here!!">
+						
+						 <label>
+						category : 	</label> 
+						 <select type="text" name="categoryName"
+						th:value="${categoryName}">
+							<option th:each="id: ${categoryList}" th:value="${id.name}"
+								th:text="${id.name}"></option>
+							<option selected="selected"></option>
+					</select>
+				
+					
+					<label> 
+					Trade Mark : </label> <select type="text"
+						name="tradeMarkName" th:value="${tradeMarkName}">
+							<option th:each="id: ${tradeMarkList}" th:value="${id.name}"
+								th:text="${id.name}"></option>
+							<option selected="selected"></option>
+					</select>
+					
+					
+					 <label>
+					  Size :  	</label> <select type="text"
+						name="sizeName" th:value="${sizeName}">
+							<option th:each="size: ${sizeList}" th:value="${size.name}"
+								th:text="${size.name}"></option>
+							<option selected="selected"></option>
+					</select>
+				 
+					
+					<label> Sex: 	</label> 
+					 <select type="text"
+						name="sexName" th:value="${sexName}">
+							<option th:each="sex: ${sexList}" th:value="${sex.name}"
+								th:text="${sex.name}"></option>
+							<option selected="selected"></option>
+					</select>
+				
+					
+					<input type="text" name="priceStart" th:value="${priceStart}"
+						placeholder="giá từ"> 
+						
+						<input type="text" name="priceEnd"
+						th:value="${priceEnd}" placeholder="giá đến">
+						
+						
+					<button type="submit">search</button>
+				</form>
+			</div>
+			<div>
+				Click <a th:href="@{/admin/product/add}"> here</a> to add product
+			</div>
+			<div>
+				<table border="1px solid black">
+					<tr>
+						<th>ID</th>
+						<th>NAME</th>
+						<th>PRICE</th>
+						<th>IMAGE</th>
+						<th>DESCRITION</th>
+						<th>CATEGORYNAME</th>
+						<th>Thuong Hieu</th>
+						<th>Kich Thuoc</th>
+						<th>Gioi Tinh</th>
+						<th>So Luong</th>
+						<th>OPTION</th>
+					</tr>
+
+					<tr th:each="pro :${productList}">
+						<td th:text="${pro.id }"></td>
+						<td th:text="${pro.name }"></td>
+						<td th:text="${pro.price }"></td>
+						<td><img th:src="@{'/download?image='+${pro.image}}"
+							style="width: 250px; height: 250px;"></td>
+						<td th:text="${pro.description }"></td>
+						<td th:text="${pro.category.name }"></td>
+						<td th:text="${pro.tradeMark.name }"></td>
+						<td th:text="${pro.size.name }"></td>
+						<td th:text="${pro.sex.name }"></td>
+						<td th:text="${pro.quantity }"></td>
+						<td>
+							<button>
+								<a th:href="@{'/admin/product/update?id='+${pro.id }}"> </i>update
+								</a>
+							</button>
+							<button>
+								<a th:href="@{'/admin/product/delete?id='+${pro.id }}"> </i>delete
+								</a>
+							</button>
+						</td>
+					</tr>
+
+				</table>
+			</div>
+			<div>
+				<a class="btn btn-primary"
+					th:href="@{'/admin/product/search?keyword=' + ${keyword} +'&page=' + ${page + 1}}">LOAD
+					MORE</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

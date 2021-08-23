@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/template">
+<head>
+<meta charset="UTF-8">
+<title>gioiTinh</title>
+</head>
+<body layout:fragment="content" th:remove="tag">
+	<H2>Sex List<H2>
+	<a th:href="@{/admin/sex/add}">Add Sex</a>
+	<div>
+		<form th:action="@{/admin/sex/search}" method="get">
+			<label>Search:</label><input type="text" name="keyword"
+				placeholder="nhap keyword" th:value="${keyword}" /> <input
+				type="submit" value="search" />
+		</form>
+	</div>
+	<div>
+		<table border="1">
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Option</td>
+			</tr>
+			<tr th:each="sex : ${sexList}">
+				<td th:text="${sex.id}"></td>
+				<td th:text="${sex.name}"></td>
+				<td><a th:href="@{'/admin/sex/update?id='+${sex.id}}">Edit</a>
+					| <a th:href="@{'/admin/sex/delete?id='+${sex.id}}">Delete</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<a class="btn btn-primary"
+			th:href="@{'/admin/sex/search?keyword=' + ${keyword} +'&page=' + ${page + 1}}">LOAD
+			MORE</a>
+	</div>
+</body>
+</html>

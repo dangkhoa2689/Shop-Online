@@ -1,0 +1,24 @@
+w<!DOCTYPE html>
+<html layout:decorator="admin/template">
+<head>
+<meta charset="UTF-8">
+<title>Category Update</title>
+</head>
+<body layout:fragment="content" th:remove="tag">
+	<div>
+		<form th:action="@{/admin/tradeMark/update}" method="post"
+			th:modelattribute="${tradeMark}">
+			<div>
+				<label>id</label><input type="text" name="id" th:value="${tradeMark.id}" />
+			</div>
+			<div>
+				<label>name</label><input type="text" name="name"
+					th:value="${tradeMark.name}" />
+			</div>
+			<div>
+				<input type="submit" value="update" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/template">
+<head>
+<meta charset="UTF-8">
+<title>kichThuoc</title>
+</head>
+<body layout:fragment="content" th:remove="tag">
+	<H2>List Trade Mark<H2>
+	<a th:href="@{/admin/tradeMark/add}">Add Trade Mark</a>
+	<div>
+		<form th:action="@{/admin/tradeMark/search}" method="get">
+			<label>Search:</label><input type="text" name="keyword"
+				placeholder="nhap keyword" th:value="${keyword}" /> <input
+				type="submit" value="search" />
+		</form>
+	</div>
+	<div>
+		<table border="1">
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Option</td>
+			</tr>
+			<tr th:each="tradeMark : ${tradeMarkList}">
+				<td th:text="${tradeMark.id}"></td>
+				<td th:text="${tradeMark.name}"></td>
+				<td><a th:href="@{'/admin/tradeMark/update?id='+${tradeMark.id}}">Edit</a>
+					| <a th:href="@{'/admin/tradeMark/delete?id='+${tradeMark.id}}">Delete</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<a class="btn btn-primary"
+			th:href="@{'/admin/tradeMark/search?keyword=' + ${keyword} +'&page=' + ${page + 1}}">LOAD
+			MORE</a>
+	</div>
+</body>
+</html>

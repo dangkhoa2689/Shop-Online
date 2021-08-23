@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html layout:decorator="client/template">
+<head>
+<meta charset="UTF-8">
+<title>Cart</title>
+</head>
+<body layout:fragment="content" th:remove="tag">
+	<br><br><br><br><br>
+	<p>Chi tiet gio hang</p>
+	<table border="1px solid black">
+		<tr>
+			<th>id</th>
+			<th>tensp</th>
+			<th>soluong</th>
+			<th>giasp</th>
+			<th>thanhtien</th>
+			<th>option</th>
+		</tr>
+
+		<tr th:each="entry: ${#session.getAttribute('cart')}">
+			<th th:text="${entry.key }"></th>
+			<th th:text="${entry.value.product.name }"></th>
+			<th th:text="${entry.value.quantity }"></th>
+			<th th:text="${entry.value.unitPrice }"></th>
+			<th th:text="${entry.value.quantity*entry.value.unitPrice }"></th>
+			<th><a th:href="@{'/delete-from-cart?key='+${entry.key}}"> xoa</a>
+				<a></a></th>
+		</tr>
+
+	</table>
+
+	<a th:href="@{/products}" role="button">mua tiep</a>
+	<a th:href="@{/member/bill/add}" role="button">thanh toan</a>
+	<br><br>
+</body>
+</html>

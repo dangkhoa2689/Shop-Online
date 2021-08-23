@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<div th:fragment="menu" th:remove="tag">
+		<p>Menu</p>
+		<ul>
+			<li><a th:href="@{/admin/user/search}">User</a></li>
+			<li><a th:href="@{/admin/category/search}">Category</a></li>
+			<li><a th:href="@{/admin/product/search}">Product</a></li>
+			<li><a th:href="@{/admin/bill/search}">Bill</a></li>
+			<li><a th:href="@{/admin/sex/search}">Sex</a></li>
+			<li><a th:href="@{/admin/tradeMark/search}">Trade Mark</a></li>
+			<li><a th:href="@{/admin/size/search}">Size</a></li>
+			<li><a th:href="@{/logout}">Logout</a></li>
+		</ul>
+		<hr />
+	</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/template">
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body layout:fragment="content" th:remove="tag">
+	<div>
+		<form th:action="@{/admin/bill/search}" method="get">
+			<label>Search:</label><input type="text" name="keyword" placeholder="nhap keyword"  th:value="${keyword}"/> <input type="submit" value="search" />
+		</form>
+	</div>
+	<h1>Danh Sach Bill</h1>
+	
+	<table border="1px solid black">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>ADDRESS</th>
+			<th>PHONE</th>
+			<th>BUYDATE</th>
+			<th>DISCOUNT</th>
+			<th>PRICETOTAL</th>
+			<th>PAY</th>
+			<th>OPTION</th>
+		</tr>
+
+		<tr th:each="b:${bills }">
+			<td th:text="${b.id }"></td>
+			<td th:text="${b.user.name}"></td>
+			<td th:text="${b.user.address}"></td>
+			<td th:text="${b.user.phone}"></td>
+			<td th:text="${b.buyDate }"></td>	
+			<td th:text="${b.discountPercent}+'%'"></td>
+			<td th:text="${b.priceTotal }"></td>
+			<td th:text="${b.pay }"></td>		
+			<td><a th:href="@{'/admin/billproduct/search?idBill='+${b.id }}">detail</a>|<a th:href="@{'/admin/delete/bills?idBill='+${b.id }}">DELETE</a></td>
+		</tr>
+
+	</table>
+	<div>
+		 <a class="btn btn-primary" th:if="${admin}!=null"
+			th:href="@{'/admin/bill/search?keyword=' + ${keyword} +'&page=' + ${page + 1}}">LOAD
+			MORE</a>
+	</div>
+</body>
+</html>

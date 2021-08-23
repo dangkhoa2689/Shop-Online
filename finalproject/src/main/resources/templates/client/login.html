@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+<!-- jQuery 2.2.0 -->
+	<script src="static/jQuery/jQuery-2.2.0.min.js"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+		$.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!-- Bootstrap 3.3.6 -->
+	<!-- <script src="static/js/bootstrap.min.js"></script> -->
+<link href="static/css/loginadm.css" rel="stylesheet">
+</head>
+<body>
+<div class="login-admin">
+	<div class="bird-container bird-container--one">
+		<div class="bird bird--one"></div>
+	</div>
+	
+	<div class="bird-container bird-container--two">
+		<div class="bird bird--two"></div>
+	</div>
+	
+	<div class="bird-container bird-container--three">
+		<div class="bird bird--three"></div>
+	</div>
+	
+	<div class="bird-container bird-container--four">
+		<div class="bird bird--four"></div>
+	</div>
+	
+	
+	<div class=form-login>
+	<h2 style="text-align: center;">Đăng Nhập</h2>
+	
+	<form th:action="@{/login}" method="POST">
+	<label for="uname"><b>Username</b></label>
+		<input type="text" placeholder="Tài khoản" name="username" required="required" /> 
+		 <label for="psw"><b>Password</b></label>
+		<input type="password" placeholder="Mật khẩu" name="password" required="required" /> 
+		
+			<button type="submit" class="btn btn-info" >Login</button>
+			<a>Khách hàng mới >></a> <a th:href="@{register}" >Đăng ký</a> 
+	</form>
+	</div>
+	</div>
+</body>
+</html>
